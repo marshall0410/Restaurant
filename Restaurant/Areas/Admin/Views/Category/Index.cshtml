@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Restaurant.Models.Category>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="border backgroundWhite">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Category List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <partial name="_CreateButtonPartial" />
+        </div>
+    </div>
+    <br />
+    @if(Model.Count() > 0)
+     {
+        <table class="table table-striped border">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>                
+                <th></th>
+            </tr>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.Name)
+                    </td>                    
+                    <td class="text-right">
+                        <partial name="_RUDButtonPartial" model="item.Id"/>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>No Categories exist...</p>
+    }
+
+</div>
